@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="60">
+    <Properties>
+        <Property name="LOG_PATTERN">%sn %d{yyyy-MM-dd HH:mm:ss.SSS}  [%t] %-5level %logger{36} - %msg%n</Property>
+    </Properties>
+    <Appenders>
+    	<RollingFile name="RollingFile" fileName="km.log" filePattern="km_%d{MMdd}.log.gz">
+    		<PatternLayout pattern="${LOG_PATTERN}"/>
+    		<Policies>
+    			<TimeBasedTriggeringPolicy />
+    		</Policies>
+    		<DefaultRolloverStrategy max="20"/>
+    	</RollingFile> 
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+		<Logger name="com.whroid.house" level="debug" />
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+        </Root>
+    </Loggers>
+</Configuration>

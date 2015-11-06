@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    active: dev  # Use "-Dspring.profiles.active=[test|prod|test1]" in the command line to override.
+  main:
+    show_banner: false
+  application:
+    name: HouseDesign
+---
+spring:
+  profiles: dev
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/im_kmdb?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true
+    username: root
+    password:
+    initialSize: 5
+    maxActive: 10
+    testWhileIdle: "true"
+    testOnBorrow: "true"
+    validationQuery: "SELECT 1"  # Example values are SELECT 1(mysql), select 1 from dual(oracle), SELECT 1(MS Sql Server)
+    validationInterval: "60000"
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  freemarker:
+    cache: false
+server:
+  port: 8081
